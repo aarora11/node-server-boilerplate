@@ -8,6 +8,7 @@ const morgan = require('morgan');
 const app = express();
 const router = require('./router');
 const mongoose = require('mongoose');
+const cors = require('cors');
 
 
 //DB Setup
@@ -17,7 +18,9 @@ mongoose.connect('mongodb://localhost:auth/auth');
 //#3
 //App Setup
 app.use(morgan('combined')); //--midlleware --logging framework --used for debugging
-app.use(bodyParser.json({type: '*/*'}));  //--midlleware any incoming request will passthrough these. -- parse incoming requests into json 
+app.use(cors());
+app.use(bodyParser.json({type: '*/*'}));  //--midlleware any incoming request will passthrough these. -- parse incoming requests into json
+
 router(app);
 
 
